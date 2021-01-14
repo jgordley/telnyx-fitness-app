@@ -107,6 +107,18 @@
         "LogGroupName": "/aws/lambda/fitness-api-prod-progress"
       }
     },
+    "StatusLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/fitness-api-prod-status"
+      }
+    },
+    "SendLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/fitness-api-prod-send"
+      }
+    },
     "IamRoleLambdaExecution": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -204,7 +216,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/fitness-api/prod/1610397310972-2021-01-11T20:35:10.972Z/create.zip"
+          "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/create.zip"
         },
         "Handler": "create.main",
         "Runtime": "nodejs12.x",
@@ -213,7 +225,11 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "tableName": "clients"
+            "tableName": "clients",
+            "statusTableName": "status_updates",
+            "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
+            "telnyx_number": "+18787770154",
+            "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
           }
         },
         "Role": {
@@ -227,14 +243,14 @@
         "CreateLogGroup"
       ]
     },
-    "CreateLambdaVersionGR9YWnngyDOPqTQcLGjfy8OYcuGObg0og9FYNK8rHY": {
+    "CreateLambdaVersiontbi7ltIK7f6324JccHg9wdIkfiGYCb1NiIFQXlRQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateLambdaFunction"
         },
-        "CodeSha256": "Oi3s2237ZR1daM53Tpdj5ECIC0B1zxpFnpx+Gr9RGHs="
+        "CodeSha256": "7K6ILmhFaj3/Zv6luiVoL1GJersIocqLRIwbXIj7ULE="
       }
     },
     "GetLambdaFunction": {
@@ -244,7 +260,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/fitness-api/prod/1610397310972-2021-01-11T20:35:10.972Z/get.zip"
+          "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/get.zip"
         },
         "Handler": "get.main",
         "Runtime": "nodejs12.x",
@@ -253,7 +269,11 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "tableName": "clients"
+            "tableName": "clients",
+            "statusTableName": "status_updates",
+            "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
+            "telnyx_number": "+18787770154",
+            "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
           }
         },
         "Role": {
@@ -267,14 +287,14 @@
         "GetLogGroup"
       ]
     },
-    "GetLambdaVersionk3HoCG9BwrRDJfxpESxhN60bi5BEp7LnNog9Kkao": {
+    "GetLambdaVersiondrql9ubEQ3mK4Poek5x8NMyiUMwzGt5yHXjrXZbh38M": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetLambdaFunction"
         },
-        "CodeSha256": "6vn0BkiKYkeYamBinhI6tfpHhnuElelcaizsnhaKQ+4="
+        "CodeSha256": "++t+iF1PEghwY51Xknim4IHg6RXOrvLYpXtE3KgNp0I="
       }
     },
     "ListLambdaFunction": {
@@ -284,7 +304,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/fitness-api/prod/1610397310972-2021-01-11T20:35:10.972Z/list.zip"
+          "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/list.zip"
         },
         "Handler": "list.main",
         "Runtime": "nodejs12.x",
@@ -293,7 +313,11 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "tableName": "clients"
+            "tableName": "clients",
+            "statusTableName": "status_updates",
+            "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
+            "telnyx_number": "+18787770154",
+            "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
           }
         },
         "Role": {
@@ -307,14 +331,14 @@
         "ListLogGroup"
       ]
     },
-    "ListLambdaVersionPv3t2EzSos9ipYnVqZoEGRsZ54l9TOxIOegF30h6KeA": {
+    "ListLambdaVersionVtyrke0E2WENDOfz1X4PqZYZG9mVGIlYnceKHvRk": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ListLambdaFunction"
         },
-        "CodeSha256": "rZAyB4TfmGtj9fHF/e/Fe2ljbZtloX930/19t6YIJl4="
+        "CodeSha256": "n3Ni3lLXaFCIUa+4vgdT7HzXkoaK2zQCNh2I6jd2UpU="
       }
     },
     "UpdateLambdaFunction": {
@@ -324,7 +348,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/fitness-api/prod/1610397310972-2021-01-11T20:35:10.972Z/update.zip"
+          "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/update.zip"
         },
         "Handler": "update.main",
         "Runtime": "nodejs12.x",
@@ -333,7 +357,11 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "tableName": "clients"
+            "tableName": "clients",
+            "statusTableName": "status_updates",
+            "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
+            "telnyx_number": "+18787770154",
+            "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
           }
         },
         "Role": {
@@ -347,14 +375,14 @@
         "UpdateLogGroup"
       ]
     },
-    "UpdateLambdaVersion0Jz3GzlqDR5TG3MwS2qzbUZR2tx0pRZ0NgJUY5v3gE": {
+    "UpdateLambdaVersionSNGw0Mglo3XE2fg1erqx4qqiRXPyJi8wtZHiMvtWok0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UpdateLambdaFunction"
         },
-        "CodeSha256": "6+SrmijTELOVuN1qjCdPEFUxSowHZ9EhLThgncLgfQg="
+        "CodeSha256": "xcI+nL5i4e82PVDVwF8RgGDeY6MKeNNH3wF1XUBAhBA="
       }
     },
     "DeleteLambdaFunction": {
@@ -364,7 +392,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/fitness-api/prod/1610397310972-2021-01-11T20:35:10.972Z/delete.zip"
+          "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/delete.zip"
         },
         "Handler": "delete.main",
         "Runtime": "nodejs12.x",
@@ -373,7 +401,11 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "tableName": "clients"
+            "tableName": "clients",
+            "statusTableName": "status_updates",
+            "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
+            "telnyx_number": "+18787770154",
+            "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
           }
         },
         "Role": {
@@ -387,14 +419,14 @@
         "DeleteLogGroup"
       ]
     },
-    "DeleteLambdaVersionsXp06zPoeFbTaL4C58qjOaXV9iV7zfT9z4Jg6UqY": {
+    "DeleteLambdaVersion7z91anU250cDADw8hGgj4JTiTUpcRWsXpFMKXGLgW5A": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DeleteLambdaFunction"
         },
-        "CodeSha256": "sIq4SrIvwFRRIrUyUOg2gF4VzT6wgppD20DvhkOuj/M="
+        "CodeSha256": "qK4o8JahfGoa83Vpz+duiAacD9a2WMSqZjVkhnlxAHE="
       }
     },
     "ProgressLambdaFunction": {
@@ -404,7 +436,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/fitness-api/prod/1610397310972-2021-01-11T20:35:10.972Z/progress.zip"
+          "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/progress.zip"
         },
         "Handler": "progress.main",
         "Runtime": "nodejs12.x",
@@ -413,7 +445,11 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "tableName": "clients"
+            "tableName": "clients",
+            "statusTableName": "status_updates",
+            "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
+            "telnyx_number": "+18787770154",
+            "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
           }
         },
         "Role": {
@@ -427,14 +463,102 @@
         "ProgressLogGroup"
       ]
     },
-    "ProgressLambdaVersionAzsYXfInYzQ7JM1yoEl2Z8xTDq2WUh8CVAnhRb2k0": {
+    "ProgressLambdaVersionEBaI0UdcJ6EmnL2EPy9JSJarXt7dEcUAS4mTPegqtBI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ProgressLambdaFunction"
         },
-        "CodeSha256": "JklQFuCjsONdkKD6qJZQkOpBd4sijnuK+WYTLS6q8T8="
+        "CodeSha256": "zajxodOMItWw/TPSsRhYQU8hJl3iMtOdvqPIs/xePJs="
+      }
+    },
+    "StatusLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/status.zip"
+        },
+        "Handler": "status.main",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "fitness-api-prod-status",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "tableName": "clients",
+            "statusTableName": "status_updates",
+            "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
+            "telnyx_number": "+18787770154",
+            "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "StatusLogGroup"
+      ]
+    },
+    "StatusLambdaVersionYbjgENyQGrOjl36dlnJuh3VZNpe92fe8N83tQuLjSKA": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "StatusLambdaFunction"
+        },
+        "CodeSha256": "R80X8UDcW3fS6VHS2zgX67KfxA1wDKE7rypb5HhqdRY="
+      }
+    },
+    "SendLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/send.zip"
+        },
+        "Handler": "send.main",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "fitness-api-prod-send",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "tableName": "clients",
+            "statusTableName": "status_updates",
+            "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
+            "telnyx_number": "+18787770154",
+            "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "SendLogGroup"
+      ]
+    },
+    "SendLambdaVersionsJjHxTuTzK9JiyIqTnxMDCeBxFnaBH2lr4xviysA": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "SendLambdaFunction"
+        },
+        "CodeSha256": "5fA2sB/4lmi5r0Qa2Vzq4IEAF3m8+yG65XciAaJCTWc="
       }
     },
     "ApiGatewayRestApi": {
@@ -486,6 +610,261 @@
           ]
         },
         "PathPart": "progress",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceStatus": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "status",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceSend": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "send",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodClientsOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceClients"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodClientsIdVarOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,PUT,GET'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceClientsIdVar"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodProgressOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceProgress"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodStatusOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceStatus"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodSendOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceSend"
+        },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -749,7 +1128,93 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1610397304577": {
+    "ApiGatewayMethodStatusPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceStatus"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "StatusLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayMethodSendPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceSend"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "SendLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayDeployment1610666346070": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -758,12 +1223,19 @@
         "StageName": "prod"
       },
       "DependsOn": [
+        "ApiGatewayMethodClientsOptions",
+        "ApiGatewayMethodClientsIdVarOptions",
+        "ApiGatewayMethodProgressOptions",
+        "ApiGatewayMethodStatusOptions",
+        "ApiGatewayMethodSendOptions",
         "ApiGatewayMethodClientsPost",
         "ApiGatewayMethodClientsIdVarGet",
         "ApiGatewayMethodClientsGet",
         "ApiGatewayMethodClientsIdVarPut",
         "ApiGatewayMethodClientsIdVarDelete",
-        "ApiGatewayMethodProgressPost"
+        "ApiGatewayMethodProgressPost",
+        "ApiGatewayMethodStatusPost",
+        "ApiGatewayMethodSendPost"
       ]
     },
     "CreateLambdaPermissionApiGateway": {
@@ -987,6 +1459,80 @@
           ]
         }
       }
+    },
+    "StatusLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "StatusLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "SendLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "SendLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
     }
   },
   "Outputs": {
@@ -998,37 +1544,49 @@
     "CreateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateLambdaVersionGR9YWnngyDOPqTQcLGjfy8OYcuGObg0og9FYNK8rHY"
+        "Ref": "CreateLambdaVersiontbi7ltIK7f6324JccHg9wdIkfiGYCb1NiIFQXlRQ"
       }
     },
     "GetLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetLambdaVersionk3HoCG9BwrRDJfxpESxhN60bi5BEp7LnNog9Kkao"
+        "Ref": "GetLambdaVersiondrql9ubEQ3mK4Poek5x8NMyiUMwzGt5yHXjrXZbh38M"
       }
     },
     "ListLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ListLambdaVersionPv3t2EzSos9ipYnVqZoEGRsZ54l9TOxIOegF30h6KeA"
+        "Ref": "ListLambdaVersionVtyrke0E2WENDOfz1X4PqZYZG9mVGIlYnceKHvRk"
       }
     },
     "UpdateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UpdateLambdaVersion0Jz3GzlqDR5TG3MwS2qzbUZR2tx0pRZ0NgJUY5v3gE"
+        "Ref": "UpdateLambdaVersionSNGw0Mglo3XE2fg1erqx4qqiRXPyJi8wtZHiMvtWok0"
       }
     },
     "DeleteLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DeleteLambdaVersionsXp06zPoeFbTaL4C58qjOaXV9iV7zfT9z4Jg6UqY"
+        "Ref": "DeleteLambdaVersion7z91anU250cDADw8hGgj4JTiTUpcRWsXpFMKXGLgW5A"
       }
     },
     "ProgressLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ProgressLambdaVersionAzsYXfInYzQ7JM1yoEl2Z8xTDq2WUh8CVAnhRb2k0"
+        "Ref": "ProgressLambdaVersionEBaI0UdcJ6EmnL2EPy9JSJarXt7dEcUAS4mTPegqtBI"
+      }
+    },
+    "StatusLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "StatusLambdaVersionYbjgENyQGrOjl36dlnJuh3VZNpe92fe8N83tQuLjSKA"
+      }
+    },
+    "SendLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "SendLambdaVersionsJjHxTuTzK9JiyIqTnxMDCeBxFnaBH2lr4xviysA"
       }
     },
     "ServiceEndpoint": {

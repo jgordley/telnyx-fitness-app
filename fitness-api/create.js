@@ -18,7 +18,7 @@ export const main = handler(async (event, context) => {
       lastName: data.lastName,
       phoneNumber: data.phoneNumber,
       workout: defaultWorkout,
-      latestMessage: "No messages to display",
+      latestMessage: [],
       createdAt: Date.now(), // Current Unix timestamp
     },
   };

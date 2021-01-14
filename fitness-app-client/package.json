@@ -6,9 +6,17 @@
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
+    "aws-amplify": "^3.3.14",
+    "axios": "^0.21.1",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
+    "react-icons": "^3.11.0",
+    "react-router-bootstrap": "^0.25.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "require": "^2.4.20",
+    "telnyx": "^1.11.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
