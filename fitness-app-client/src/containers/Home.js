@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { API } from "aws-amplify";
 import { BsPersonBoundingBox, BsFillChatSquareDotsFill, BsPencilSquare, BsArrowRepeat } from "react-icons/bs";
 import ListGroup from "react-bootstrap/ListGroup";
-import axios from "axios";
 import getFormattedWorkout from "../helpers/FormatWorkout";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -15,7 +14,7 @@ export default function Home() {
     const [clients, setclients] = useState([]);
     const [count, setCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
-    const [isTextLoading, setIsTextLoading] = useState(false);
+    const [isTextLoading] = useState(false);
     const [show, setShow] = useState(false);
     const [showMessages, setShowMessages] = useState(false);
     const [showUpdate, setShowUpdate] = useState(false);
@@ -45,16 +44,6 @@ export default function Home() {
     const handleCloseUpdate = () => setShowUpdate(false);
     const handleShowUpdate = () => setShowUpdate(true);
 
-    const headers = {
-        "Authorization": "Bearer KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-    };
-
-    const baseUrl = "https://api.telnyx.com/v2/messages";
-
-    //const telnyx = require('telnyx')('KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX');
-
     useEffect(() => {
         async function onLoad() {
 
@@ -83,7 +72,7 @@ export default function Home() {
     function openMessageModal(client) {
         setCurrentClient(client);
         console.log(client);
-        setShowMessages(true);
+        handleShowMessages();
     }
 
     function openUpdateModal(client) {
@@ -94,7 +83,7 @@ export default function Home() {
         setUpdateWeight(client.weight);
         setUpdateHeight(client.height);
         setUpdatePhoneNumber(client.phoneNumber);
-        setShowUpdate(true);
+        handleShowUpdate();
     }
 
     function convertHeight(inches) {
