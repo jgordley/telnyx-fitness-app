@@ -12,10 +12,14 @@ export const main = handler(async (event, context) => {
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
     //UpdateExpression: "SET phoneNumber = :phoneNumber, workout = :workout, latestMessage = list_append(latestMessage, :message)",
-    UpdateExpression: "SET phoneNumber = :phoneNumber, workout = :workout",
+    UpdateExpression: "SET phoneNumber = :phoneNumber, workout = :workout, height = :height, weight = :weight, lastName = :lastName, firstName = :firstName",
     ExpressionAttributeValues: {
       ":phoneNumber": data.phoneNumber,
-      ":workout": data.workout
+      ":workout": data.workout,
+      ":height": data.height,
+      ":weight": data.weight,
+      ":lastName": data.lastName,
+      ":firstName": data.firstName
     },
     // 'ReturnValues' specifies if and how to return the item's attributes,
     // where ALL_NEW returns all attributes of the item after the update; you

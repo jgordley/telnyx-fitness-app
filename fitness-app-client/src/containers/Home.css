@@ -14,3 +14,7 @@
  input[type="button"]::-moz-focus-inner {
     border: 0;
  }
+
+ .listButton {
+   margin: 10px
+ }

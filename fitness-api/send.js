@@ -9,9 +9,10 @@ export async function main(event, context) {
         body = await telnyx.messages.create({
             'from': process.env.telnyx_number, // Your Telnyx number
             'to': data.phoneNumber,
-            'text': JSON.stringify(data.workout),
+            'text': data.workout,
             'webhook_url': process.env.telnyx_status_url,
-            'use_profile_webhooks': false
+            'use_profile_webhooks': false,
+            'media_urls': ["https://i.pinimg.com/originals/a9/20/40/a920403fcd4e3cdac91374023af5f155.jpg"]
         });
         statusCode = 200;
     } catch (e) {

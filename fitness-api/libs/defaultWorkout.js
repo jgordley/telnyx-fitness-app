@@ -4,7 +4,8 @@ export let defaultWorkout = {
         "name": "Bicep Curl",
         "sets": 3,
         "reps": 10,
-        "weight": 15
+        "weight": 15,
+        "attachment": "s3"
     },
     {
         "name": "Pushups",

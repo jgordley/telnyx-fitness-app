@@ -13,7 +13,7 @@
         "tableName": "clients",
         "statusTableName": "status_updates",
         "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
-        "telnyx_number": "+18787770154",
+        "telnyx_number": "+17733028081",
         "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
       },
       "iamRoleStatements": [
@@ -241,7 +241,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/create.zip"
+                "S3Key": "serverless/fitness-api/prod/1610752831268-2021-01-15T23:20:31.268Z/create.zip"
               },
               "Handler": "create.main",
               "Runtime": "nodejs12.x",
@@ -253,7 +253,7 @@
                   "tableName": "clients",
                   "statusTableName": "status_updates",
                   "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
-                  "telnyx_number": "+18787770154",
+                  "telnyx_number": "+17733028081",
                   "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
                 }
               },
@@ -268,14 +268,14 @@
               "CreateLogGroup"
             ]
           },
-          "CreateLambdaVersiontbi7ltIK7f6324JccHg9wdIkfiGYCb1NiIFQXlRQ": {
+          "CreateLambdaVersionwiguPCIGmacKIEy3QLiicqNewhGZHr99DNqWeFmRz4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateLambdaFunction"
               },
-              "CodeSha256": "7K6ILmhFaj3/Zv6luiVoL1GJersIocqLRIwbXIj7ULE="
+              "CodeSha256": "8uzOcCp7zhMk90obwTLFyJAsb3eGP5aeA+kM7pwgQeA="
             }
           },
           "GetLambdaFunction": {
@@ -285,7 +285,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/get.zip"
+                "S3Key": "serverless/fitness-api/prod/1610752831268-2021-01-15T23:20:31.268Z/get.zip"
               },
               "Handler": "get.main",
               "Runtime": "nodejs12.x",
@@ -297,7 +297,7 @@
                   "tableName": "clients",
                   "statusTableName": "status_updates",
                   "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
-                  "telnyx_number": "+18787770154",
+                  "telnyx_number": "+17733028081",
                   "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
                 }
               },
@@ -312,7 +312,7 @@
               "GetLogGroup"
             ]
           },
-          "GetLambdaVersiondrql9ubEQ3mK4Poek5x8NMyiUMwzGt5yHXjrXZbh38M": {
+          "GetLambdaVersionNGFgx7DVxmjOOp8Kw3woaUlCEZPwVKsieEV3hBUE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
@@ -329,7 +329,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/list.zip"
+                "S3Key": "serverless/fitness-api/prod/1610752831268-2021-01-15T23:20:31.268Z/list.zip"
               },
               "Handler": "list.main",
               "Runtime": "nodejs12.x",
@@ -341,7 +341,7 @@
                   "tableName": "clients",
                   "statusTableName": "status_updates",
                   "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
-                  "telnyx_number": "+18787770154",
+                  "telnyx_number": "+17733028081",
                   "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
                 }
               },
@@ -356,7 +356,7 @@
               "ListLogGroup"
             ]
           },
-          "ListLambdaVersionVtyrke0E2WENDOfz1X4PqZYZG9mVGIlYnceKHvRk": {
+          "ListLambdaVersion3ws2G1R155a4xi8yVYgACI5JNvs7f0OZkGk8SZBQ8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
@@ -373,7 +373,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/update.zip"
+                "S3Key": "serverless/fitness-api/prod/1610752831268-2021-01-15T23:20:31.268Z/update.zip"
               },
               "Handler": "update.main",
               "Runtime": "nodejs12.x",
@@ -385,7 +385,7 @@
                   "tableName": "clients",
                   "statusTableName": "status_updates",
                   "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
-                  "telnyx_number": "+18787770154",
+                  "telnyx_number": "+17733028081",
                   "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
                 }
               },
@@ -400,14 +400,14 @@
               "UpdateLogGroup"
             ]
           },
-          "UpdateLambdaVersionSNGw0Mglo3XE2fg1erqx4qqiRXPyJi8wtZHiMvtWok0": {
+          "UpdateLambdaVersionKq13OcEM2xakLLwTZU9jpwvG8VVYIe8DRINEbg7TW9o": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdateLambdaFunction"
               },
-              "CodeSha256": "xcI+nL5i4e82PVDVwF8RgGDeY6MKeNNH3wF1XUBAhBA="
+              "CodeSha256": "1O432ZIil7+B2Ytg1S3MIdK/DEQyLAR52it/VTcrJ9o="
             }
           },
           "DeleteLambdaFunction": {
@@ -417,7 +417,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/delete.zip"
+                "S3Key": "serverless/fitness-api/prod/1610752831268-2021-01-15T23:20:31.268Z/delete.zip"
               },
               "Handler": "delete.main",
               "Runtime": "nodejs12.x",
@@ -429,7 +429,7 @@
                   "tableName": "clients",
                   "statusTableName": "status_updates",
                   "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
-                  "telnyx_number": "+18787770154",
+                  "telnyx_number": "+17733028081",
                   "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
                 }
               },
@@ -444,7 +444,7 @@
               "DeleteLogGroup"
             ]
           },
-          "DeleteLambdaVersion7z91anU250cDADw8hGgj4JTiTUpcRWsXpFMKXGLgW5A": {
+          "DeleteLambdaVersionOUTZtstnciGgH1anjD01jVLGtMSV842OqlFZVrU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
@@ -461,7 +461,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/progress.zip"
+                "S3Key": "serverless/fitness-api/prod/1610752831268-2021-01-15T23:20:31.268Z/progress.zip"
               },
               "Handler": "progress.main",
               "Runtime": "nodejs12.x",
@@ -473,7 +473,7 @@
                   "tableName": "clients",
                   "statusTableName": "status_updates",
                   "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
-                  "telnyx_number": "+18787770154",
+                  "telnyx_number": "+17733028081",
                   "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
                 }
               },
@@ -488,7 +488,7 @@
               "ProgressLogGroup"
             ]
           },
-          "ProgressLambdaVersionEBaI0UdcJ6EmnL2EPy9JSJarXt7dEcUAS4mTPegqtBI": {
+          "ProgressLambdaVersionaEXw12Apy8cw3uskVFQ2AA6DbyuiI90dFVGgSfQ6H8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
@@ -505,7 +505,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/status.zip"
+                "S3Key": "serverless/fitness-api/prod/1610752831268-2021-01-15T23:20:31.268Z/status.zip"
               },
               "Handler": "status.main",
               "Runtime": "nodejs12.x",
@@ -517,7 +517,7 @@
                   "tableName": "clients",
                   "statusTableName": "status_updates",
                   "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
-                  "telnyx_number": "+18787770154",
+                  "telnyx_number": "+17733028081",
                   "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
                 }
               },
@@ -532,7 +532,7 @@
               "StatusLogGroup"
             ]
           },
-          "StatusLambdaVersionYbjgENyQGrOjl36dlnJuh3VZNpe92fe8N83tQuLjSKA": {
+          "StatusLambdaVersionxj2TEQ4XDvheWfIYNRFyBdmILWSHLtz9XHsWHVOcwt8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
@@ -549,7 +549,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z/send.zip"
+                "S3Key": "serverless/fitness-api/prod/1610752831268-2021-01-15T23:20:31.268Z/send.zip"
               },
               "Handler": "send.main",
               "Runtime": "nodejs12.x",
@@ -561,7 +561,7 @@
                   "tableName": "clients",
                   "statusTableName": "status_updates",
                   "telnyx_api_key": "KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
-                  "telnyx_number": "+18787770154",
+                  "telnyx_number": "+17733028081",
                   "telnyx_status_url": "https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status"
                 }
               },
@@ -576,14 +576,14 @@
               "SendLogGroup"
             ]
           },
-          "SendLambdaVersionsJjHxTuTzK9JiyIqTnxMDCeBxFnaBH2lr4xviysA": {
+          "SendLambdaVersionITtpABdoG5b4jnWaGDkLWrOOSP9JHRaBYdU4FN6c": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SendLambdaFunction"
               },
-              "CodeSha256": "5fA2sB/4lmi5r0Qa2Vzq4IEAF3m8+yG65XciAaJCTWc="
+              "CodeSha256": "TU9drA1crueZ8/DHPbTQp+VuHZfIOBzoF6PXS24abIU="
             }
           },
           "ApiGatewayRestApi": {
@@ -1239,7 +1239,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1610666346070": {
+          "ApiGatewayDeployment1610752824052": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1569,49 +1569,49 @@
           "CreateLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateLambdaVersiontbi7ltIK7f6324JccHg9wdIkfiGYCb1NiIFQXlRQ"
+              "Ref": "CreateLambdaVersionwiguPCIGmacKIEy3QLiicqNewhGZHr99DNqWeFmRz4"
             }
           },
           "GetLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetLambdaVersiondrql9ubEQ3mK4Poek5x8NMyiUMwzGt5yHXjrXZbh38M"
+              "Ref": "GetLambdaVersionNGFgx7DVxmjOOp8Kw3woaUlCEZPwVKsieEV3hBUE"
             }
           },
           "ListLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ListLambdaVersionVtyrke0E2WENDOfz1X4PqZYZG9mVGIlYnceKHvRk"
+              "Ref": "ListLambdaVersion3ws2G1R155a4xi8yVYgACI5JNvs7f0OZkGk8SZBQ8"
             }
           },
           "UpdateLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdateLambdaVersionSNGw0Mglo3XE2fg1erqx4qqiRXPyJi8wtZHiMvtWok0"
+              "Ref": "UpdateLambdaVersionKq13OcEM2xakLLwTZU9jpwvG8VVYIe8DRINEbg7TW9o"
             }
           },
           "DeleteLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "DeleteLambdaVersion7z91anU250cDADw8hGgj4JTiTUpcRWsXpFMKXGLgW5A"
+              "Ref": "DeleteLambdaVersionOUTZtstnciGgH1anjD01jVLGtMSV842OqlFZVrU"
             }
           },
           "ProgressLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ProgressLambdaVersionEBaI0UdcJ6EmnL2EPy9JSJarXt7dEcUAS4mTPegqtBI"
+              "Ref": "ProgressLambdaVersionaEXw12Apy8cw3uskVFQ2AA6DbyuiI90dFVGgSfQ6H8"
             }
           },
           "StatusLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "StatusLambdaVersionYbjgENyQGrOjl36dlnJuh3VZNpe92fe8N83tQuLjSKA"
+              "Ref": "StatusLambdaVersionxj2TEQ4XDvheWfIYNRFyBdmILWSHLtz9XHsWHVOcwt8"
             }
           },
           "SendLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SendLambdaVersionsJjHxTuTzK9JiyIqTnxMDCeBxFnaBH2lr4xviysA"
+              "Ref": "SendLambdaVersionITtpABdoG5b4jnWaGDkLWrOOSP9JHRaBYdU4FN6c"
             }
           },
           "ServiceEndpoint": {
@@ -1782,7 +1782,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "CreateLambdaVersiontbi7ltIK7f6324JccHg9wdIkfiGYCb1NiIFQXlRQ"
+        "versionLogicalId": "CreateLambdaVersionwiguPCIGmacKIEy3QLiicqNewhGZHr99DNqWeFmRz4"
       },
       "get": {
         "handler": "get.main",
@@ -1822,7 +1822,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetLambdaVersiondrql9ubEQ3mK4Poek5x8NMyiUMwzGt5yHXjrXZbh38M"
+        "versionLogicalId": "GetLambdaVersionNGFgx7DVxmjOOp8Kw3woaUlCEZPwVKsieEV3hBUE"
       },
       "list": {
         "handler": "list.main",
@@ -1862,7 +1862,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "ListLambdaVersionVtyrke0E2WENDOfz1X4PqZYZG9mVGIlYnceKHvRk"
+        "versionLogicalId": "ListLambdaVersion3ws2G1R155a4xi8yVYgACI5JNvs7f0OZkGk8SZBQ8"
       },
       "update": {
         "handler": "update.main",
@@ -1902,7 +1902,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "UpdateLambdaVersionSNGw0Mglo3XE2fg1erqx4qqiRXPyJi8wtZHiMvtWok0"
+        "versionLogicalId": "UpdateLambdaVersionKq13OcEM2xakLLwTZU9jpwvG8VVYIe8DRINEbg7TW9o"
       },
       "delete": {
         "handler": "delete.main",
@@ -1942,7 +1942,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "DeleteLambdaVersion7z91anU250cDADw8hGgj4JTiTUpcRWsXpFMKXGLgW5A"
+        "versionLogicalId": "DeleteLambdaVersionOUTZtstnciGgH1anjD01jVLGtMSV842OqlFZVrU"
       },
       "progress": {
         "handler": "progress.main",
@@ -1982,7 +1982,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "ProgressLambdaVersionEBaI0UdcJ6EmnL2EPy9JSJarXt7dEcUAS4mTPegqtBI"
+        "versionLogicalId": "ProgressLambdaVersionaEXw12Apy8cw3uskVFQ2AA6DbyuiI90dFVGgSfQ6H8"
       },
       "status": {
         "handler": "status.main",
@@ -2022,7 +2022,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "StatusLambdaVersionYbjgENyQGrOjl36dlnJuh3VZNpe92fe8N83tQuLjSKA"
+        "versionLogicalId": "StatusLambdaVersionxj2TEQ4XDvheWfIYNRFyBdmILWSHLtz9XHsWHVOcwt8"
       },
       "send": {
         "handler": "send.main",
@@ -2062,7 +2062,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "SendLambdaVersionsJjHxTuTzK9JiyIqTnxMDCeBxFnaBH2lr4xviysA"
+        "versionLogicalId": "SendLambdaVersionITtpABdoG5b4jnWaGDkLWrOOSP9JHRaBYdU4FN6c"
       }
     },
     "configValidationMode": "warn",
@@ -2074,7 +2074,7 @@
       },
       "package": {
         "individually": true,
-        "artifactDirectoryName": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z"
+        "artifactDirectoryName": "serverless/fitness-api/prod/1610752831268-2021-01-15T23:20:31.268Z"
       },
       "plugins": {
         "$ref": "$[\"service\"][\"plugins\"]"
@@ -2090,7 +2090,7 @@
   },
   "package": {
     "individually": true,
-    "artifactDirectoryName": "serverless/fitness-api/prod/1610666353362-2021-01-14T23:19:13.362Z",
+    "artifactDirectoryName": "serverless/fitness-api/prod/1610752831268-2021-01-15T23:20:31.268Z",
     "artifact": ""
   }
 }

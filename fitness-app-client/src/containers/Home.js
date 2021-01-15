@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { API } from "aws-amplify";
-import { BsPersonBoundingBox } from "react-icons/bs";
+import { BsPersonBoundingBox, BsFillChatSquareDotsFill, BsPencilSquare, BsArrowRepeat } from "react-icons/bs";
 import ListGroup from "react-bootstrap/ListGroup";
 import axios from "axios";
+import getFormattedWorkout from "../helpers/FormatWorkout";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -12,11 +13,12 @@ import "./Home.css";
 
 export default function Home() {
     const [clients, setclients] = useState([]);
-    const [count] = useState(0);
+    const [count, setCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const [isTextLoading, setIsTextLoading] = useState(false);
     const [show, setShow] = useState(false);
     const [showMessages, setShowMessages] = useState(false);
+    const [showUpdate, setShowUpdate] = useState(false);
     const [currentClient, setCurrentClient] = useState({ latestMessage: ["No messages to display"] });
 
 
@@ -27,11 +29,21 @@ export default function Home() {
     const [lastName, setLastName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
 
+    //Update client fields
+    const [updateHeight, setUpdateHeight] = useState(0);
+    const [updateWeight, setUpdateWeight] = useState(0);
+    const [updateFirstName, setUpdateFirstName] = useState("");
+    const [updateLastName, setUpdateLastName] = useState("");
+    const [updatePhoneNumber, setUpdatePhoneNumber] = useState("");
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const handleCloseMessages = () => setShowMessages(false);
     const handleShowMessages = () => setShowMessages(true);
+
+    const handleCloseUpdate = () => setShowUpdate(false);
+    const handleShowUpdate = () => setShowUpdate(true);
 
     const headers = {
         "Authorization": "Bearer KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX",
@@ -64,10 +76,25 @@ export default function Home() {
         return API.get("fitness", "/clients");
     }
 
+    async function refreshClients() {
+        setCount(count+1);
+    }
+
     function openMessageModal(client) {
         setCurrentClient(client);
         console.log(client);
         setShowMessages(true);
+    }
+
+    function openUpdateModal(client) {
+        setCurrentClient(client);
+        console.log(client);
+        setUpdateFirstName(client.firstName);
+        setUpdateLastName(client.lastName);
+        setUpdateWeight(client.weight);
+        setUpdateHeight(client.height);
+        setUpdatePhoneNumber(client.phoneNumber);
+        setShowUpdate(true);
     }
 
     function convertHeight(inches) {
@@ -76,18 +103,56 @@ export default function Home() {
         return feet.toString() + "'" + inches.toString() + "\"";
     }
 
-    async function sendWorkout(workout, phoneNumber) {
+    async function sendWorkout(workout, phoneNumber, firstName) {
         console.log(workout, phoneNumber);
+        let workoutText = getFormattedWorkout(workout, firstName);
+        console.log(workoutText);
         try {
             const result = await API.post("fitness", "/send", {
                 body: {
-                    workout: workout,
+                    workout: workoutText,
                     phoneNumber: phoneNumber
                 }
             });
 
             console.log(result);
             alert("Message sent!");
+        } catch (e) {
+            alert(e);
+        }
+    }
+
+    async function handleSave() {
+        console.log(currentClient.clientId);
+        console.log(updateFirstName);
+        try {
+            const result = await API.put("fitness", `/clients/${currentClient.clientId}`, {
+                body: {
+                    workout: currentClient.workout,
+                    phoneNumber: updatePhoneNumber,
+                    lastName: updateLastName,
+                    firstName: updateFirstName,
+                    height: updateHeight,
+                    weight: updateWeight
+                }
+            });
+
+            console.log(result);
+            alert("Client updated!");
+            handleCloseUpdate();
+            setCount(count+1);
+        } catch (e) {
+            alert(e);
+        }
+    }
+
+    async function handleDelete() {
+        try {
+            const result = await API.del("fitness", `/clients/${currentClient.clientId}`);
+            console.log(result);
+            alert("Client deleted!");
+            handleCloseUpdate();
+            setCount(count+1);
         } catch (e) {
             alert(e);
         }
@@ -180,6 +245,56 @@ export default function Home() {
         );
     }
 
+    function UpdateModal() {
+        return (
+            <>
+                <Modal show={showUpdate} onHide={handleCloseUpdate}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Edit Client</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Row>
+                                <Col>
+                                    <Form.Control placeholder="First name" value={updateFirstName} onChange={(e) => setUpdateFirstName(e.target.value)} />
+                                </Col>
+                                <Col>
+                                    <Form.Control placeholder="Last name" value={updateLastName} onChange={(e) => setUpdateLastName(e.target.value)} />
+                                </Col>
+                            </Row>
+                            <br />
+                            <Row>
+                                <Col>
+                                    <Form.Control placeholder="Height(inches)" value={updateHeight} onChange={(e) => setUpdateHeight(e.target.value)} />
+                                </Col>
+                                <Col>
+                                    <Form.Control placeholder="Weight(lbs)" value={updateWeight} onChange={(e) => setUpdateWeight(e.target.value)} />
+                                </Col>
+                            </Row>
+                            <br />
+                            <Row>
+                                <Col>
+                                    <Form.Control placeholder="Phone Number" value={updatePhoneNumber} onChange={(e) => setUpdatePhoneNumber(e.target.value)} />
+                                </Col>
+                            </Row>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleCloseUpdate}>
+                            Close
+                        </Button>
+                        <Button variant="danger" onClick={handleDelete}>
+                            Delete
+                        </Button>
+                        <Button variant="primary" disabled={!updateHeight || !updateWeight || !updateLastName || !updateFirstName || !updatePhoneNumber} onClick={handleSave}>
+                            Save
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </>
+        );
+    }
+
     function MessageModal() {
         return (
             <>
@@ -236,13 +351,14 @@ export default function Home() {
                                     {"Weight: " + client.weight + "lbs"}
                                 </span>
                             </Col>
-                            <Col md={3}>
-                                <Button onClick={() => { openMessageModal(client) }} active={!isTextLoading}>
-                                    See Messages
+                            <Col md={6} style={{textAlign: "center"}}>
+                                <Button className="listButton" onClick={() => { openMessageModal(client) }} active={!isTextLoading}>
+                                    <BsFillChatSquareDotsFill />
                                 </Button>
-                            </Col>
-                            <Col md={3} style={{ textAlign: "center" }}>
-                                <Button onClick={() => { sendWorkout(client.workout, client.phoneNumber) }} active={!isTextLoading}>
+                                <Button className="listButton" onClick={() => { openUpdateModal(client) }} active={!isTextLoading}>
+                                    <BsPencilSquare />
+                                </Button>
+                                <Button className="listButton" onClick={() => { sendWorkout(client.workout, client.phoneNumber, client.firstName) }} active={!isTextLoading}>
                                     Send Workout
                                 </Button>
                             </Col>
@@ -256,7 +372,14 @@ export default function Home() {
     function renderclients() {
         return (
             <div className="clients">
-                <h2 className="pb-3 mt-4 mb-3 border-bottom">Your clients</h2>
+                <Row>
+                    <Col>
+                    <h2>Your clients</h2>
+                    </Col>
+                    <Col style={{textAlign: "right"}}>
+                    <Button onClick={refreshClients}><BsArrowRepeat /></Button>
+                    </Col>
+                </Row>
                 <ListGroup>{!isLoading && renderclientsList(clients)}</ListGroup>
             </div>
         );
@@ -267,6 +390,7 @@ export default function Home() {
             {renderclients()}
             {CreateModal()}
             {MessageModal()}
+            {UpdateModal()}
         </div>
     );
 }

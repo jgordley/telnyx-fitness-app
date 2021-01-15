@@ -13,6 +13,12 @@ Amplify.configure({
   Auth: {
     mandatorySignIn: false,
   },
+  Storage: {
+    region: config.s3.REGION,
+    bucket: config.s3.BUCKET,
+    accessKeyId: "xxx",
+    secretAccessKey: "xxx"
+  },
   API: {
     endpoints: [
       {

@@ -21,7 +21,7 @@ provider:
     tableName: clients
     statusTableName: status_updates
     telnyx_api_key: KEY017648B2A94C60500B8F46CFE1C94AEC_SIcqzXjn23R81vrNYGRfkX
-    telnyx_number: '+18787770154'
+    telnyx_number: '+17733028081'
     telnyx_status_url: https://z256forypj.execute-api.us-east-2.amazonaws.com/prod/status
 
 
