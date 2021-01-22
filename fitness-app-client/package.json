@@ -9,6 +9,7 @@
     "aws-amplify": "^3.3.14",
     "axios": "^0.21.1",
     "react": "^17.0.1",
+    "react-beautiful-dnd": "^13.0.0",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
     "react-icons": "^3.11.0",

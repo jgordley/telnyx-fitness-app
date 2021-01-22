@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { API } from "aws-amplify";
 import { BsPersonBoundingBox, BsFillChatSquareDotsFill, BsPencilSquare, BsArrowRepeat } from "react-icons/bs";
+import { LinkContainer } from "react-router-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import getFormattedWorkout from "../helpers/FormatWorkout";
 import Row from "react-bootstrap/Row";
@@ -16,9 +17,10 @@ export default function Home() {
     const [isLoading, setIsLoading] = useState(true);
     const [isTextLoading] = useState(false);
     const [show, setShow] = useState(false);
+    const [showPreview, setShowPreview] = useState(false);
     const [showMessages, setShowMessages] = useState(false);
     const [showUpdate, setShowUpdate] = useState(false);
-    const [currentClient, setCurrentClient] = useState({ latestMessage: ["No messages to display"] });
+    const [currentClient, setCurrentClient] = useState({ workout: {exercises: []}, latestMessage: ["No messages to display"] });
 
 
     //Create client fields
@@ -44,13 +46,17 @@ export default function Home() {
     const handleCloseUpdate = () => setShowUpdate(false);
     const handleShowUpdate = () => setShowUpdate(true);
 
+    const handleClosePreview = () => setShowPreview(false);
+    const handleShowPreview = () => setShowPreview(true);
+
+
     useEffect(() => {
         async function onLoad() {
 
+            console.log("Home!");
             try {
                 const clients = await loadclients();
                 setclients(clients);
-                console.log(clients);
             } catch (e) {
                 alert(e);
             }
@@ -63,21 +69,25 @@ export default function Home() {
 
     function loadclients() {
         return API.get("fitness", "/clients");
+
     }
 
     async function refreshClients() {
-        setCount(count+1);
+        setCount(count + 1);
     }
 
     function openMessageModal(client) {
         setCurrentClient(client);
-        console.log(client);
         handleShowMessages();
+    }
+
+    function openPreviewModal(client) {
+        setCurrentClient(client);
+        handleShowPreview();
     }
 
     function openUpdateModal(client) {
         setCurrentClient(client);
-        console.log(client);
         setUpdateFirstName(client.firstName);
         setUpdateLastName(client.lastName);
         setUpdateWeight(client.weight);
@@ -93,18 +103,14 @@ export default function Home() {
     }
 
     async function sendWorkout(workout, phoneNumber, firstName) {
-        console.log(workout, phoneNumber);
         let workoutText = getFormattedWorkout(workout, firstName);
-        console.log(workoutText);
         try {
-            const result = await API.post("fitness", "/send", {
+            await API.post("fitness", "/send", {
                 body: {
                     workout: workoutText,
                     phoneNumber: phoneNumber
                 }
             });
-
-            console.log(result);
             alert("Message sent!");
         } catch (e) {
             alert(e);
@@ -112,10 +118,8 @@ export default function Home() {
     }
 
     async function handleSave() {
-        console.log(currentClient.clientId);
-        console.log(updateFirstName);
         try {
-            const result = await API.put("fitness", `/clients/${currentClient.clientId}`, {
+            await API.put("fitness", `/clients/${currentClient.clientId}`, {
                 body: {
                     workout: currentClient.workout,
                     phoneNumber: updatePhoneNumber,
@@ -125,11 +129,9 @@ export default function Home() {
                     weight: updateWeight
                 }
             });
-
-            console.log(result);
             alert("Client updated!");
             handleCloseUpdate();
-            setCount(count+1);
+            setCount(count + 1);
         } catch (e) {
             alert(e);
         }
@@ -137,11 +139,10 @@ export default function Home() {
 
     async function handleDelete() {
         try {
-            const result = await API.del("fitness", `/clients/${currentClient.clientId}`);
-            console.log(result);
+            await API.del("fitness", `/clients/${currentClient.clientId}`);
             alert("Client deleted!");
             handleCloseUpdate();
-            setCount(count+1);
+            setCount(count + 1);
         } catch (e) {
             alert(e);
         }
@@ -149,7 +150,6 @@ export default function Home() {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        console.log(height, weight, firstName, lastName, phoneNumber);
         for (let i = 0; i < clients.length; i++) {
             if (clients[i].phoneNumber === phoneNumber) {
                 alert("A user with this phone number already exists");
@@ -165,14 +165,10 @@ export default function Home() {
                 phoneNumber: phoneNumber
             });
 
-            // New client added
-            console.log(result);
-
             // Adding this client to current listing
             const newClients = clients;
             newClients.push(result);
             setclients(newClients);
-            console.log(clients);
 
             // Close modal
             handleClose();
@@ -293,8 +289,8 @@ export default function Home() {
                     </Modal.Header>
                     <Modal.Body>
                         <ListGroup>
-                            {currentClient.latestMessage.map((message) => (
-                                <ListGroup.Item key={message}>
+                            {currentClient.latestMessage.map((message, index) => (
+                                <ListGroup.Item key={message + index.toString()}>
                                     <span className="text-muted">
                                         {message}
                                     </span>
@@ -304,6 +300,26 @@ export default function Home() {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleCloseMessages}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </>
+        );
+    }
+
+    function previewModal() {
+        return (
+            <>
+                <Modal show={showPreview} onHide={handleClosePreview}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Workout Preview</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body style={{whiteSpace: "pre-wrap", height: "300px", overflowY: "auto"}}>
+                            {getFormattedWorkout(currentClient.workout, currentClient.firstName)}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClosePreview}>
                             Close
                         </Button>
                     </Modal.Footer>
@@ -331,7 +347,7 @@ export default function Home() {
                                     Client Since: {new Date(client.createdAt).toLocaleDateString()}
                                 </span>
                             </Col>
-                            <Col md={3}>
+                            <Col md={2}>
                                 <span className="text-muted">
                                     {"Height: " + convertHeight(client.height)}
                                 </span>
@@ -340,12 +356,20 @@ export default function Home() {
                                     {"Weight: " + client.weight + "lbs"}
                                 </span>
                             </Col>
-                            <Col md={6} style={{textAlign: "center"}}>
+                            <Col md={7} style={{ textAlign: "center" }}>
                                 <Button className="listButton" onClick={() => { openMessageModal(client) }} active={!isTextLoading}>
                                     <BsFillChatSquareDotsFill />
                                 </Button>
                                 <Button className="listButton" onClick={() => { openUpdateModal(client) }} active={!isTextLoading}>
                                     <BsPencilSquare />
+                                </Button>
+                                <LinkContainer to={`/workout/${client.clientId}`}>
+                                    <Button className="listButton">
+                                        Edit Workout <BsPencilSquare />
+                                    </Button>
+                                </LinkContainer>
+                                <Button className="listButton" onClick={() => { openPreviewModal(client) }}>
+                                    Preview
                                 </Button>
                                 <Button className="listButton" onClick={() => { sendWorkout(client.workout, client.phoneNumber, client.firstName) }} active={!isTextLoading}>
                                     Send Workout
@@ -363,10 +387,10 @@ export default function Home() {
             <div className="clients">
                 <Row>
                     <Col>
-                    <h2>Your clients</h2>
+                        <h2>Your clients</h2>
                     </Col>
-                    <Col style={{textAlign: "right"}}>
-                    <Button onClick={refreshClients}><BsArrowRepeat /></Button>
+                    <Col style={{ textAlign: "right" }}>
+                        <Button onClick={refreshClients}><BsArrowRepeat /></Button>
                     </Col>
                 </Row>
                 <ListGroup>{!isLoading && renderclientsList(clients)}</ListGroup>
@@ -380,6 +404,7 @@ export default function Home() {
             {CreateModal()}
             {MessageModal()}
             {UpdateModal()}
+            {previewModal()}
         </div>
     );
 }
