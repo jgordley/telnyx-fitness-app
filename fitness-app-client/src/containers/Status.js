@@ -124,7 +124,7 @@ export default function Status() {
                         <Button><BsArrowRepeat /></Button>
                     </Col>
                 </Row>
-                <ListGroup>{renderstatusList(status)}</ListGroup>
+                <ListGroup className="statusListGroup">{renderstatusList(status)}</ListGroup>
             </div>
         );
     }

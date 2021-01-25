@@ -12,14 +12,21 @@ import Modal from "react-bootstrap/Modal";
 import "./Home.css";
 
 export default function Home() {
+
+    // List of clients
     const [clients, setclients] = useState([]);
+
+
     const [count, setCount] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
     const [isTextLoading] = useState(false);
+
+    // Modal toggle variables
     const [show, setShow] = useState(false);
     const [showPreview, setShowPreview] = useState(false);
     const [showMessages, setShowMessages] = useState(false);
     const [showUpdate, setShowUpdate] = useState(false);
+
+    // Current client viewing in update modal
     const [currentClient, setCurrentClient] = useState({ workout: {exercises: []}, latestMessage: ["No messages to display"] });
 
 
@@ -60,8 +67,6 @@ export default function Home() {
             } catch (e) {
                 alert(e);
             }
-
-            setIsLoading(false);
         }
 
         onLoad();
@@ -393,7 +398,7 @@ export default function Home() {
                         <Button onClick={refreshClients}><BsArrowRepeat /></Button>
                     </Col>
                 </Row>
-                <ListGroup>{!isLoading && renderclientsList(clients)}</ListGroup>
+                <ListGroup>{renderclientsList(clients)}</ListGroup>
             </div>
         );
     }
