@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import config from './config';
 import { BrowserRouter as Router } from 'react-router-dom';
-import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
+import './react-bootstrap-range-slider.css';
 
 //AWS Capabilities
 import { Amplify } from 'aws-amplify';
