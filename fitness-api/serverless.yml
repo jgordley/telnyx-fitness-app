@@ -61,6 +61,7 @@ functions:
           path: clients/{id}
           method: get
           cors: true
+
   list:
     # Defines an HTTP API endpoint that calls the main function in list.js
     # - path: url path is /clients
@@ -125,4 +126,15 @@ functions:
       - http:
           path: send
           method: post
+          cors: true
+
+  listStatuses:
+    # Defines an HTTP API endpoint that lists all status updates
+    # - path: url path is /status
+    # - method: GET request
+    handler: listStatuses.main
+    events:
+      - http:
+          path: status
+          method: get
           cors: true

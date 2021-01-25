@@ -4,7 +4,6 @@ import dynamoDb from "./libs/dynamodb-lib";
 export const main = handler(async (event, context) => {
     const parsedEvent = JSON.parse(event.body);
     const data = parsedEvent.data;
-    console.log(data);
     const number = data.payload.from.phone_number;
     const text = data.payload.text;
 
@@ -14,7 +13,6 @@ export const main = handler(async (event, context) => {
     });
 
     let id;
-    //console.log(result);
     result.Items.forEach(element => {
         if(element.phoneNumber == number) {
             id = element.clientId;
