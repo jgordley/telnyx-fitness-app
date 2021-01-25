@@ -10,6 +10,8 @@ import Modal from 'react-bootstrap/Modal';
 import "./Status.css";
 
 export default function Status() {
+
+    // State variables
     const [status, setStatus] = useState(0);
     const [count] = useState(0);
     const [viewStatus, setViewStatus] = useState(false);
@@ -18,6 +20,7 @@ export default function Status() {
     const handleClose = () => setViewStatus(false);
     const handleShow = () => setViewStatus(true);
 
+    // Load statuses when page loads
     useEffect(() => {
         async function onLoad() {
 
@@ -36,6 +39,7 @@ export default function Status() {
         return API.get("fitness", "/status");
     }
 
+    // Modal to display a selected status
     function StatusModal() {
         return (
             <>

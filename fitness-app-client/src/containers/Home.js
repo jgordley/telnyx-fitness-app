@@ -18,7 +18,6 @@ export default function Home() {
 
 
     const [count, setCount] = useState(0);
-    const [isTextLoading] = useState(false);
 
     // Modal toggle variables
     const [show, setShow] = useState(false);
@@ -27,7 +26,7 @@ export default function Home() {
     const [showUpdate, setShowUpdate] = useState(false);
 
     // Current client viewing in update modal
-    const [currentClient, setCurrentClient] = useState({ workout: {exercises: []}, latestMessage: ["No messages to display"] });
+    const [currentClient, setCurrentClient] = useState({ workout: { exercises: [] }, latestMessage: ["No messages to display"] });
 
 
     //Create client fields
@@ -57,6 +56,7 @@ export default function Home() {
     const handleShowPreview = () => setShowPreview(true);
 
 
+    // Function gets clients on page load and lists them
     useEffect(() => {
         async function onLoad() {
 
@@ -101,12 +101,14 @@ export default function Home() {
         handleShowUpdate();
     }
 
+    // Display height in feet and inches
     function convertHeight(inches) {
         const feet = (inches - (inches % 12)) / 12;
         inches = inches % 12;
         return feet.toString() + "'" + inches.toString() + "\"";
     }
 
+    // Text workout to the user
     async function sendWorkout(workout, phoneNumber, firstName) {
         let workoutText = getFormattedWorkout(workout, firstName);
         try {
@@ -122,6 +124,7 @@ export default function Home() {
         }
     }
 
+    // Update a client button
     async function handleSave() {
         try {
             await API.put("fitness", `/clients/${currentClient.clientId}`, {
@@ -142,6 +145,7 @@ export default function Home() {
         }
     }
 
+    // Delete a client button
     async function handleDelete() {
         try {
             await API.del("fitness", `/clients/${currentClient.clientId}`);
@@ -153,6 +157,7 @@ export default function Home() {
         }
     }
 
+    // Create a new Client button
     async function handleSubmit(event) {
         event.preventDefault();
         for (let i = 0; i < clients.length; i++) {
@@ -182,6 +187,7 @@ export default function Home() {
         }
     }
 
+    // Abstracted post request using AWS
     function createClient(client) {
         return API.post("fitness", "/clients", {
             body: client
@@ -320,8 +326,8 @@ export default function Home() {
                     <Modal.Header closeButton>
                         <Modal.Title>Workout Preview</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body style={{whiteSpace: "pre-wrap", height: "300px", overflowY: "auto"}}>
-                            {getFormattedWorkout(currentClient.workout, currentClient.firstName)}
+                    <Modal.Body style={{ whiteSpace: "pre-wrap", height: "300px", overflowY: "auto" }}>
+                        {getFormattedWorkout(currentClient.workout, currentClient.firstName)}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClosePreview}>
@@ -362,10 +368,10 @@ export default function Home() {
                                 </span>
                             </Col>
                             <Col md={7} style={{ textAlign: "center" }}>
-                                <Button className="listButton" onClick={() => { openMessageModal(client) }} active={!isTextLoading}>
+                                <Button className="listButton" onClick={() => { openMessageModal(client) }}>
                                     <BsFillChatSquareDotsFill />
                                 </Button>
-                                <Button className="listButton" onClick={() => { openUpdateModal(client) }} active={!isTextLoading}>
+                                <Button className="listButton" onClick={() => { openUpdateModal(client) }}>
                                     <BsPencilSquare />
                                 </Button>
                                 <LinkContainer to={`/workout/${client.clientId}`}>
@@ -376,7 +382,7 @@ export default function Home() {
                                 <Button className="listButton" onClick={() => { openPreviewModal(client) }}>
                                     Preview
                                 </Button>
-                                <Button className="listButton" onClick={() => { sendWorkout(client.workout, client.phoneNumber, client.firstName) }} active={!isTextLoading}>
+                                <Button className="listButton" onClick={() => { sendWorkout(client.workout, client.phoneNumber, client.firstName) }}>
                                     Send Workout
                                 </Button>
                             </Col>
